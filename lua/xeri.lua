@@ -62,8 +62,10 @@ cmp.setup({
 		end,
 	},
 	mapping = {
-		['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-		['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+		['<C-n>'] = cmp.mapping.select_prev_item(),
+		['<C-p>'] = cmp.mapping.select_next_item(),
+		['<C-k>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+		['<C-j>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
 		['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
 		['<C-e>'] = cmp.mapping({
 				i = cmp.mapping.abort(),
@@ -72,6 +74,7 @@ cmp.setup({
 		-- Accept currently selected item. If none selected, `select` first item.
 		-- Set `select` to `false` to only confirm explicitly selected items.
 		['<CR>'] = cmp.mapping.confirm({ select = true }),
+		['<C-CR>'] = cmp.mapping.confirm({ select = true }),
 	},
 	sources = cmp.config.sources({
 			{ name = 'nvim_lsp' },
@@ -116,10 +119,10 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
 
 	buf_set_keymap("n", "<C-j>", "<cmd>Telescope lsp_document_symbols<CR>", opts)
-	buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+	buf_set_keymap("n", "<K>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 
 	buf_set_keymap("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
-	buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+	buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 	buf_set_keymap("n", "<leader>D", "<cmd>Telescope lsp_type_definitions<CR>", opts)
 	buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 	buf_set_keymap("n", "<leader>ca", "<cmd>Telescope lsp_code_actions<CR>", opts)
@@ -130,7 +133,7 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer=0})
 	vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer=0})
 	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer=0})
-	-- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+	buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 	-- buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 	-- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 	-- buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
