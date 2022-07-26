@@ -27,8 +27,7 @@ use 'hrsh7th/nvim-cmp'
 use 'hrsh7th/cmp-nvim-lsp'
 use 'hrsh7th/cmp-buffer'
 use 'hrsh7th/cmp-path'
-use 'L3MON4D3/LuaSnip'
-use 'saadparwaiz1/cmp_luasnip'
+-- use 'L3MON4D3/LuaSnip'
 use 'neovim/nvim-lspconfig'
 use 'williamboman/nvim-lsp-installer'
 
@@ -62,7 +61,11 @@ use 'sindrets/diffview.nvim'
 --magit
 use 'TimUntersberger/neogit'
 
---todo comments
-use 'folke/todo-comments.nvim'
+-- snippets
+use 'quangnguyen30192/cmp-nvim-ultisnips'
+-- If you want to enable filetype detection based on treesitter:
+-- requires = { "nvim-treesitter/nvim-treesitter" },
+use 'SirVer/ultisnips'
+use 'honza/vim-snippets'
 
 end)

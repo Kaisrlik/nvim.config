@@ -58,14 +58,14 @@ vim.g.glow_use_pager = true
 vim.g.glow_border = "shadow"
 vim.keymap.set("n", "<leader>p", "<cmd>Glow<cr>")
 
-
 -- Native LSP Setup
 -- Global setup.
 local cmp = require'cmp'
+local cmp_ultisnips_mappings = require'cmp_nvim_ultisnips.mappings'
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+			vim.fn["UltiSnips#Anon"](args.body)
 		end,
 	},
 	mapping = {
@@ -82,10 +82,12 @@ cmp.setup({
 		-- Set `select` to `false` to only confirm explicitly selected items.
 		['<CR>'] = cmp.mapping.confirm({ select = true }),
 		['<C-CR>'] = cmp.mapping.confirm({ select = true }),
+		["<Tab>"] = cmp.mapping( function(fallback) cmp_ultisnips_mappings.expand_or_jump_forwards(fallback) end, { "i", "s"}),
+		["<S-Tab>"] = cmp.mapping( function(fallback) cmp_ultisnips_mappings.jump_backwards(fallback) end, { "i", "s"}),
 	},
 	sources = cmp.config.sources({
 			{ name = 'nvim_lsp' },
-			{ name = 'luasnip' }, -- For luasnip users.
+			{ name = "ultisnips" },
 		}, {
 			{ name = 'buffer' },
 		})
