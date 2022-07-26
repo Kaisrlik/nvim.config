@@ -70,7 +70,7 @@ cmp.setup({
 	},
 	mapping = {
 		['<C-p>'] = cmp.mapping.select_prev_item(),
-		['<C-n>'] = cmp.mapping.select_next_item(4),
+		['<C-n>'] = cmp.mapping.select_next_item(),
 		['<C-k>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
 		['<C-j>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
 		['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
