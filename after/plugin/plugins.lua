@@ -63,9 +63,11 @@ use 'TimUntersberger/neogit'
 
 -- snippets
 use 'quangnguyen30192/cmp-nvim-ultisnips'
--- If you want to enable filetype detection based on treesitter:
--- requires = { "nvim-treesitter/nvim-treesitter" },
 use 'SirVer/ultisnips'
 use 'honza/vim-snippets'
+
+-- If you want to enable filetype detection based on treesitter:
+use 'nvim-treesitter/nvim-treesitter'
+use 'nvim-treesitter/playground'
 
 end)
