@@ -121,7 +121,9 @@ local on_attach = function(client, bufnr)
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	-- leaving only what I actually use...
 	buf_set_keymap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+	-- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 	buf_set_keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
+	-- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 
 	buf_set_keymap("n", "<C-j>", "<cmd>Telescope lsp_document_symbols<CR>", opts)
 	buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
@@ -132,15 +134,13 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 	buf_set_keymap("n", "<leader>ca", "<cmd>Telescope lsp_code_actions<CR>", opts)
 	vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer=0})
+	-- buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
 	vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, {buffer=0})
 	vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, {buffer=0})
 	vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer=0})
 	vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer=0})
 	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer=0})
-	-- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-	-- buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-	-- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 	-- buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 	-- buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 	-- buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
@@ -198,13 +198,29 @@ require('telescope').setup{
 		prompt_prefix = "$ ",
 		mappings = {
 			i = {
-				["<c-a>"] = function() print(vim.inspect(action_state.get_selected_entry())) end 
+				["<c-a>"] = function() print(vim.inspect(action_state.get_selected_entry())) end
 			}
-		}
-	}
+		},
+		vimgrep_arguments = {
+			'ag',
+			'--nocolor',
+			'--noheading',
+			'--filename',
+			'--numbers',
+			'--column',
+			'--ignore-case',
+			'--ignore-dir=build',
+			'--ignore-dir=_b*',
+			'--ignore-dir=.ccls*',
+		},
+	},
 }
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('file_browser')
+
+vim.keymap.set("n", "<C-f>", "<cmd>Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top<CR>")
+vim.keymap.set("n", "<leader>lg", "<cmd>Telescope live_grep<CR>")
+vim.keymap.set("n", "<C-p>", "<cmd>Telescope find_files<CR>", {buffer=0, noremap = true})
 
 local mappings = {
 }
