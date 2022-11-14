@@ -174,6 +174,14 @@ lspconfig.ccls.setup {
 	on_attach = on_attach,
 }
 
+-- ltex-ls grammer check
+lspconfig.ltex.setup {
+	on_attach = on_attach,
+	filetypes = { "markdown", "text" },
+	cmd = { "/opt/ltex-ls/ltex-ls-15.2.0/bin/ltex-ls" },
+	flags = { debounce_text_changes = 300 },
+}
+
 -- organize imports
 -- https://github.com/neovim/nvim-lspconfig/issues/115#issuecomment-902680058
 function OrganizeImports(timeoutms)
