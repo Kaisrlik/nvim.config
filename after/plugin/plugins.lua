@@ -58,8 +58,8 @@ use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 --git diff
 use 'sindrets/diffview.nvim'
 
---magit
-use 'TimUntersberger/neogit'
+--git
+use 'tpope/vim-fugitive'
 
 -- snippets
 use 'quangnguyen30192/cmp-nvim-ultisnips'
