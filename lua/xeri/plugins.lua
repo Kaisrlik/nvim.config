@@ -42,7 +42,6 @@ return require('packer').startup(function(use)
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/cmp-path'
-	-- use 'L3MON4D3/LuaSnip'
 	use 'neovim/nvim-lspconfig'
 	use 'williamboman/nvim-lsp-installer'
 	
@@ -53,7 +52,6 @@ return require('packer').startup(function(use)
 	
 	--debugging
 	use 'mfussenegger/nvim-dap'
-	use 'leoluz/nvim-dap-go'
 	use 'rcarriga/nvim-dap-ui'
 	use 'theHamsta/nvim-dap-virtual-text'
 	use 'nvim-telescope/telescope-dap.nvim'
