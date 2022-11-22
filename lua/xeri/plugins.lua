@@ -90,4 +90,7 @@ return require('packer').startup(function(use)
 		  end,
 	  })
 	use 'nvim-treesitter/playground'
+
+	-- presentation in vim
+	use 'sotte/presenting.vim'
 end)
