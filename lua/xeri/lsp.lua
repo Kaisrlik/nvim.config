@@ -1,3 +1,5 @@
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local lsp_installer = require("nvim-lsp-installer")
@@ -11,24 +13,8 @@ lsp_installer.settings({
 	}
 })
 
-lsp_installer.setup{}
--- c/c++ LSP server
-local lspconfig = require('lspconfig')
-lspconfig.ccls.setup {
-	capabilities = capabilities,
-	on_attach = on_attach,
-}
-
--- ltex-ls grammer check
-lspconfig.ltex.setup {
-	on_attach = on_attach,
-	filetypes = { "markdown", "text" },
-	cmd = { "/opt/ltex-ls/ltex-ls-15.2.0/bin/ltex-ls" },
-	flags = { debounce_text_changes = 300 },
-}
-
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local on_attach = function(client, bufnr)
+
 	local function buf_set_keymap(...)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
 	end
@@ -48,17 +34,16 @@ local on_attach = function(client, bufnr)
 
 	buf_set_keymap("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
 	buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-	buf_set_keymap("n", "<leader>D", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+	buf_set_keymap("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+	-- buf_set_keymap('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+	buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+	-- diagnostics
+	buf_set_keymap("n", "<leader>dl", "<cmd>Telescope diagnostics<CR>", opts)
+	buf_set_keymap("n", "<leader>dj", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+	buf_set_keymap("n", "<leader>dk", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+
 	buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-	buf_set_keymap("n", "<leader>ca", "<cmd>Telescope lsp_code_actions<CR>", opts)
-	vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer=0})
-	-- buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
-	vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, {buffer=0})
-	vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, {buffer=0})
-	vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer=0})
-	vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer=0})
-	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer=0})
+	buf_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 	-- buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 	-- buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 	-- buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
@@ -85,6 +70,22 @@ local on_attach = function(client, bufnr)
 	end
 end
 
+lsp_installer.setup{}
+-- c/c++ LSP server
+local lspconfig = require('lspconfig')
+lspconfig.ccls.setup {
+	capabilities = capabilities,
+	on_attach = on_attach,
+}
+
+-- ltex-ls grammer check
+lspconfig.ltex.setup {
+	on_attach = on_attach,
+	filetypes = { "markdown", "text" },
+	cmd = { "/opt/ltex-ls/ltex-ls-15.2.0/bin/ltex-ls" },
+	flags = { debounce_text_changes = 300 },
+}
+
 -- organize imports
 -- https://github.com/neovim/nvim-lspconfig/issues/115#issuecomment-902680058
 function OrganizeImports(timeoutms)
@@ -106,9 +107,10 @@ end
 local use_null = true
 if use_null then
 	require("null-ls").setup {
+		capabilities = capabilities,
 		debug = true,
 		sources = {
-			require("null-ls").builtins.formatting.clang_format,
+-- 			require("null-ls").builtins.formatting.clang_format,
 			require("null-ls").builtins.diagnostics.shellcheck,
 			-- require("null-ls").builtins.completion.spell,
 		},
