@@ -53,6 +53,7 @@ return require('packer').startup(function(use)
 	--debugging
 	use 'mfussenegger/nvim-dap'
 	use 'rcarriga/nvim-dap-ui'
+	-- show virtual text such as variables value via treesitter
 	use 'theHamsta/nvim-dap-virtual-text'
 	use 'nvim-telescope/telescope-dap.nvim'
 	

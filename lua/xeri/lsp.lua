@@ -79,11 +79,29 @@ lspconfig.ccls.setup {
 }
 
 -- ltex-ls grammer check
+-- TODO: only when ltex-ls is loaded
+local path = "/home/xeri/.vim/spell/en.utf-8.add"
+local words = {}
+
+for word in io.open(path, "r"):lines() do
+	table.insert(words, word)
+end
+
 lspconfig.ltex.setup {
 	on_attach = on_attach,
 	filetypes = { "markdown", "text" },
 	cmd = { "/opt/ltex-ls/ltex-ls-15.2.0/bin/ltex-ls" },
 	flags = { debounce_text_changes = 300 },
+	settings = {
+		ltex = {
+			disabledRules = {
+				['en-US'] = { 'PROFANITY' }
+			},
+			dictionary = {
+				['en-US'] = words,
+			},
+		},
+	},
 }
 
 -- organize imports
