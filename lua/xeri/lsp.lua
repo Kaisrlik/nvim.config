@@ -43,7 +43,7 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "<leader>dk", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 
 	buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-	buf_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+	buf_set_keymap("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 	-- buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 	-- buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 	-- buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
@@ -80,7 +80,7 @@ lspconfig.ccls.setup {
 
 -- ltex-ls grammer check
 -- TODO: only when ltex-ls is loaded
-local path = "/home/xeri/.vim/spell/en.utf-8.add"
+local path = vim.fn.expand("$HOME/.vim/spell/en.utf-8.add")
 local words = {}
 
 for word in io.open(path, "r"):lines() do
