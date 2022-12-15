@@ -59,6 +59,8 @@ return require('packer').startup(function(use)
 	
 	--Grammar checking because I can't english
 	use 'rhysd/vim-grammarous'
+	 -- Adds extra functionality over rust analyzer
+	use("simrat39/rust-tools.nvim")
 	
 	--Telescope Requirements
 	use 'nvim-lua/popup.nvim'
