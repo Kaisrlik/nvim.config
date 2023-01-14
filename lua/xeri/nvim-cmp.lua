@@ -34,5 +34,6 @@ cmp.setup({
 			{ name = 'buffer' },
 			-- path
 			{ name = 'path' },
+			{ name = 'orgmode' },
 		})
 })
