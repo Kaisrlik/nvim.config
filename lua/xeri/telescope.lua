@@ -25,6 +25,6 @@ require('telescope').setup{
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('file_browser')
 
-vim.keymap.set("n", "<C-f>", "<cmd>Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top<CR>")
-vim.keymap.set("n", "<leader>lg", "<cmd>Telescope live_grep<CR>")
-vim.keymap.set("n", "<C-p>", "<cmd>Telescope find_files<CR>", {buffer=0, noremap = true})
+vim.keymap.set("n", "<leader>lf", "<cmd>Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top<CR>")
+vim.keymap.set("n", "<C-f>", "<cmd>Telescope live_grep<CR>")
+vim.keymap.set("n", "<C-p>", "<cmd>Telescope find_files<CR>", {buffer=0})

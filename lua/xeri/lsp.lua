@@ -33,10 +33,10 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 
 	buf_set_keymap("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
+	-- buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 	buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 	buf_set_keymap("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
 	-- buf_set_keymap('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-	buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 	-- diagnostics
 	buf_set_keymap("n", "<leader>dl", "<cmd>Telescope diagnostics<CR>", opts)
 	buf_set_keymap("n", "<leader>dj", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
