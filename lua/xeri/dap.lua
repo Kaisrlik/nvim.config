@@ -136,8 +136,6 @@ augroup DapRepl
 augroup END
 ]]
 
-map("<leader>ds", require("dap").continue, "continue")
-map("<leader>db", require("dap").toggle_breakpoint)
 map("<leader>dB", function()
 	require("dap").set_breakpoint(vim.fn.input "[DAP] Condition > ")
 end)
@@ -145,13 +143,19 @@ map("<leader>de", require("dapui").eval)
 map("<leader>dE", function()
 	require("dapui").eval(vim.fn.input "[DAP] Expression > ")
 end)
-map("<leader>dr", require("dap").repl.open)
+
+-- moves
 map("<C-1>", require("dap").step_back, "step_back")
 map("<C-2>", require("dap").step_into, "step_into")
 map("<C-3>", require("dap").step_over, "step_over")
+map("<C-n>", require("dap").step_over, "step_over")
 map("<C-4>", require("dap").step_out, "step_out")
+-- this is also used for starting DAP
 map("<C-5>", require("dap").continue, "continue")
+map("<leader>ds", require("dap").continue, "continue")
+-- breakpoints
 map("<C-6>", require("dap").toggle_breakpoint)
+map("<leader>db", require("dap").toggle_breakpoint)
 
 local _ = dap_ui.setup {
 	layouts = {
