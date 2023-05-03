@@ -19,6 +19,7 @@ require('telescope').setup{
 			'--ignore-dir=build',
 			'--ignore-dir=_b*',
 			'--ignore-dir=.ccls*',
+			'--ignore-dir=.git',
 		},
 	},
 }
