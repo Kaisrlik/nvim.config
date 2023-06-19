@@ -10,15 +10,7 @@ local ensure_packer = function()
 	return false
 end
 
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
--- run :PackerCompile
-vim.cmd([[
-	augroup packer_user_config
-		autocmd!
-		autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-	augroup end
-]])
+local packer_bootstrap = ensure_packer()
 
 -- import packer safely
 local status, packer = pcall(require, "packer")
@@ -28,6 +20,7 @@ end
 
 return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
+
 	-- Using my own style
 	use {'catppuccin/nvim', as = 'catppuccin'}
 
@@ -104,4 +97,11 @@ return require('packer').startup(function(use)
 			require('orgmode').setup_ts_grammar()
 		end,
 	})
+
+	-- automatically set up your configuration after cloning packer.nvim
+	-- put this at the end after all plugins
+	if packer_bootstrap then
+		require('packer').sync()
+	end
+
 end)
