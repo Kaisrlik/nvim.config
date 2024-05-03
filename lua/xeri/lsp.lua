@@ -129,7 +129,7 @@ end
 
 lspconfig.ltex.setup {
 	on_attach = on_attach,
-	filetypes = { "markdown", "text", "tex" },
+	filetypes = { "markdown", "text", "tex", "mail" },
 	cmd = { "ltex-ls" },
 	flags = { debounce_text_changes = 300 },
 	settings = {
