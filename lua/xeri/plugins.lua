@@ -91,12 +91,7 @@ return require('packer').startup(function(use)
 	use 'sotte/presenting.vim'
 
 	-- org mode
-	use({
-		'nvim-orgmode/orgmode',
-		config = function ()
-			require('orgmode').setup_ts_grammar()
-		end,
-	})
+	use 'nvim-orgmode/orgmode'
 
 	-- automatically set up your configuration after cloning packer.nvim
 	-- put this at the end after all plugins
