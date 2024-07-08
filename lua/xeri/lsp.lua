@@ -78,6 +78,29 @@ lspconfig.ccls.setup {
 	on_attach = on_attach,
 }
 
+local caps = vim.tbl_deep_extend(
+	'force',
+	vim.lsp.protocol.make_client_capabilities(),
+	require('cmp_nvim_lsp').default_capabilities(),
+	-- File watching is disabled by default for neovim.
+	{ workspace = { didChangeWatchedFiles = { dynamicRegistration = true } } }
+);
+
+local lsp_path = vim.env.NIL_PATH or 'nil'
+require('lspconfig').nil_ls.setup {
+	autostart = true,
+	capabilities = caps,
+	cmd = { lsp_path },
+	settings = {
+		['nil'] = {
+			testSetting = 42,
+			formatting = {
+				command = { "nixpkgs-fmt" },
+			},
+		},
+	},
+}
+
 lspconfig.rust_analyzer.setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
