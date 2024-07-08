@@ -44,8 +44,7 @@ return require('packer').startup(function(use)
 	use 'nvim-lualine/lualine.nvim'
 	
 	--debugging
-	use 'mfussenegger/nvim-dap'
-	use 'rcarriga/nvim-dap-ui'
+	use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
 	-- show virtual text such as variables value via treesitter
 	use 'theHamsta/nvim-dap-virtual-text'
 	use 'nvim-telescope/telescope-dap.nvim'
