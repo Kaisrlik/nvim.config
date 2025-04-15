@@ -156,6 +156,7 @@ map("<leader>ds", require("dap").continue, "continue")
 -- breakpoints
 map("<C-6>", require("dap").toggle_breakpoint)
 map("<leader>db", require("dap").toggle_breakpoint)
+map("<C-?>", function() require("dap").eval(nil, {enter = true}) end, "eval under cursor")
 
 local _ = dap_ui.setup {
 	layouts = {

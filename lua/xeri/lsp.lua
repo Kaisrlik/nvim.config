@@ -74,8 +74,16 @@ lsp_installer.setup{}
 -- c/c++ LSP server
 local lspconfig = require('lspconfig')
 lspconfig.ccls.setup {
+	cmd = { "ccls" };
+	filetypes = { "c", "cpp" };
 	capabilities = capabilities,
 	on_attach = on_attach,
+	root_dir = lspconfig.util.root_pattern("compile_commands.json", ".git", ".ccls");
+	init_options = {
+		highlight = {
+			lsRanges = true;
+		}
+	};
 }
 
 local caps = vim.tbl_deep_extend(
@@ -87,7 +95,7 @@ local caps = vim.tbl_deep_extend(
 );
 
 local lsp_path = vim.env.NIL_PATH or 'nil'
-require('lspconfig').nil_ls.setup {
+lspconfig.nil_ls.setup {
 	autostart = true,
 	capabilities = caps,
 	cmd = { lsp_path },
