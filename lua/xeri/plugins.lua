@@ -87,7 +87,7 @@ return require('packer').startup(function(use)
 	use 'nvim-treesitter/playground'
 
 	-- presentation in vim
-	use 'sotte/presenting.vim'
+	use 'Kaisrlik/present.nvim'
 
 	-- org mode
 	use 'nvim-orgmode/orgmode'
