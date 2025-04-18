@@ -193,15 +193,13 @@ function OrganizeImports(timeoutms)
 end
 
 -- Set up null-ls
-local use_null = true
-if use_null then
-	require("null-ls").setup {
-		capabilities = capabilities,
-		debug = true,
-		sources = {
--- 			require("null-ls").builtins.formatting.clang_format,
-			require("null-ls").builtins.diagnostics.shellcheck,
-			-- require("null-ls").builtins.completion.spell,
-		},
-	}
-end
+local null_ls = require("null-ls")
+null_ls.setup({
+	capabilities = capabilities,
+	debug = true,
+	sources = {
+		-- null_ls.builtins.formatting.clang_format,
+		require("none-ls-shellcheck.diagnostics"),
+		-- null_ls.builtins.completion.spell,
+	},
+})

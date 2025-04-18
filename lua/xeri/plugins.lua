@@ -38,7 +38,7 @@ return require('packer').startup(function(use)
 	use 'neovim/nvim-lspconfig'
 	use 'williamboman/nvim-lsp-installer'
 
-	use "jose-elias-alvarez/null-ls.nvim"
+	use {'nvimtools/none-ls.nvim', requires = {"gbprod/none-ls-shellcheck.nvim"} }
 
 	--Buffer navigation
 	use 'nvim-lualine/lualine.nvim'
