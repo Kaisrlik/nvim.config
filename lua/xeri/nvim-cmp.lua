@@ -1,6 +1,6 @@
 -- completition plugin setup
-local cmp = require'cmp'
-local cmp_ultisnips_mappings = require'cmp_nvim_ultisnips.mappings'
+local cmp = require('cmp')
+local cmp_ultisnips_mappings = require('cmp_nvim_ultisnips.mappings')
 cmp.setup({
 	snippet = {
 		expand = function(args)

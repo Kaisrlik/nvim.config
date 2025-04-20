@@ -27,19 +27,19 @@ require("nvim-dap-virtual-text").setup {
   all_frames = false, -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
 }
 
--- apt install lldb
-dap.adapters.lldb = {
-	name = "lldb",
-	type = "executable",
-	attach = {
-		pidProperty = "pid",
-		pidSelect = "ask",
-	},
-	command = "lldb-vscode-14",
-	env = {
-		LLDB_LAUNCH_FLAG_LAUNCH_IN_TTY = "YES",
-	}
-}
+-- -- apt install lldb
+-- dap.adapters.lldb = {
+-- 	name = "lldb",
+-- 	type = "executable",
+-- 	attach = {
+-- 		pidProperty = "pid",
+-- 		pidSelect = "ask",
+-- 	},
+-- 	command = "lldb-vscode-14",
+-- 	env = {
+-- 		LLDB_LAUNCH_FLAG_LAUNCH_IN_TTY = "YES",
+-- 	}
+-- }
 
 -- TODO: test it
 dap.adapters.lldbsrv = {

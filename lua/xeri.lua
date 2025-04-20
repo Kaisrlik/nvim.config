@@ -1,5 +1,5 @@
 require('xeri.nvim_cnf')
-require('xeri.plugins')
+require('xeri.lazy')
 require('xeri.colors')
 require('xeri.treesitter')
 require('xeri.nvim-cmp')

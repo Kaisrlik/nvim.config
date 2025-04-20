@@ -1,17 +1,7 @@
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.settings({
-	ui = {
-		icons = {
-			server_installed = "✓",
-			server_pending = "➜",
-			server_uninstalled = "✗"
-		}
-	}
-})
+-- Enable virtual text
+vim.diagnostic.config({ virtual_text = true })
 
 local on_attach = function(client, bufnr)
 
@@ -70,7 +60,6 @@ local on_attach = function(client, bufnr)
 	end
 end
 
-lsp_installer.setup{}
 -- c/c++ LSP server
 local lspconfig = require('lspconfig')
 lspconfig.ccls.setup {
