@@ -1,12 +1,4 @@
--- cargo install tree-sitter
--- import nvim-treesitter plugin safely
-local status, treesitter = pcall(require, "nvim-treesitter.configs")
-if not status then
-  return
-end
-
-treesitter.setup({
-	ensure_installed = "all",
+require('nvim-treesitter.configs').setup{
 	-- enable syntax highlighting
 	highlight = { enable = true },
 	-- ensure these language parsers are installed
@@ -18,6 +10,9 @@ treesitter.setup({
 		"vim",
 		"dockerfile",
 	},
+	ignore_install = {
+		"gitcommit",
+	},
 	-- auto install above language parsers
 	auto_install = true,
-})
+}
